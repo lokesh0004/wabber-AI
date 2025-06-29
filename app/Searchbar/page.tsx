@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { Search, Moon, Sun } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from "react";
+import { Search, Moon, Sun } from "lucide-react";
 
 const SearchBar = () => {
   const [darkMode, setDarkMode] = useState(true);
@@ -73,6 +73,29 @@ const SearchBar = () => {
     }
   };
 
+  const stars = useMemo(() => {
+    return [...Array(520)].map((_, i) => {
+      const size = Math.random() * 1.5 + 1;
+      const top = `${Math.random() * 100}%`;
+      const delay = Math.random() * 10;
+      const duration = 15 + Math.random() * 10;
+      return (
+        <div
+          key={i}
+          className="absolute bg-white/30 rounded-full animate-star"
+          style={{
+            width: `${size}px`,
+            height: `${size}px`,
+            top,
+            left: '-5%',
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+          }}
+        />
+      );
+    });
+  }, []);
+
   return (
     <div className={`relative h-[200vh] transition-colors duration-500 overflow-hidden
       ${darkMode
@@ -81,26 +104,7 @@ const SearchBar = () => {
 
       {darkMode && (
         <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-          {[...Array(520)].map((_, i) => {
-            const size = Math.random() * 1.5 + 1;
-            const top = `${Math.random() * 100}%`;
-            const delay = Math.random() * 10;
-            const duration = 15 + Math.random() * 10;
-            return (
-              <div
-                key={i}
-                className="absolute bg-white/30 rounded-full animate-star"
-                style={{
-                  width: `${size}px`,
-                  height: `${size}px`,
-                  top,
-                  left: '-5%',
-                  animationDelay: `${delay}s`,
-                  animationDuration: `${duration}s`,
-                }}
-              />
-            );
-          })}
+          {stars}
         </div>
       )}
 
@@ -167,8 +171,7 @@ const SearchBar = () => {
                     className={`px-5 py-3 transition-all cursor-pointer border-b last:border-none group
                       ${darkMode 
                         ? 'hover:bg-white/10 border-white/10 text-white' 
-                        : 'hover:bg-purple-50/80 border-gray-200 text-gray-800'}`}
-                  >
+                        : 'hover:bg-purple-50/80 border-gray-200 text-gray-800'}`}>
                     <div>
                       <p className="font-semibold text-sm leading-snug">{item.title}</p>
                       <p className="text-xs text-gray-500 mt-1">{item.subtitle}</p>
