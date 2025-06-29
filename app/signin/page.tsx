@@ -1,27 +1,27 @@
 'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { auth } from "@/lib/firebase";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import { auth } from '@/lib/firebase';
 import {
   signInWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
-} from "firebase/auth";
-import { FcGoogle } from "react-icons/fc";
+} from 'firebase/auth';
+import { FcGoogle } from 'react-icons/fc';
 
 export default function SignIn() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handleEmailSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setError("");
+    setError('');
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/Searchbar");
+      router.push('/Searchbar');
     } catch (err: any) {
       setError(err.message);
     }
@@ -31,7 +31,7 @@ export default function SignIn() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      router.push("/Searchbar");
+      router.push('/Searchbar');
     } catch (err: any) {
       setError(err.message);
     }
@@ -39,19 +39,17 @@ export default function SignIn() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#1f1c2c] to-[#928DAB] flex items-center justify-center px-4 relative overflow-hidden">
-      
-      {/* 🌟 Glowing Webber AI Branding */}
-      <h1 className="absolute top-6 left-6 z-50 text-3xl sm:text-4xl font-extrabold 
-        bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text 
-        animate-textGlow font-['Poppins','Orbitron','Segoe UI','sans-serif'] drop-shadow-[0_2px_12px_rgba(0,255,255,0.3)]">
-        Webber <span className="text-white/80">AI</span>
+
+      {/* 🌟 Webber AI Branding */}
+      <h1 className="absolute top-6 left-6 z-50 text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg animate-textGlow font-poppins">
+        Webber <span className="text-white/90">AI</span>
       </h1>
 
+      {/* 🧊 Sign In Box */}
       <div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl shadow-2xl max-w-md w-full border border-white/20 z-10">
         <h2 className="text-3xl font-extrabold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent text-center animate-pulse">
           Sign In 🙏
         </h2>
-
         <p className="text-sm text-gray-200 text-center mt-2 mb-6">
           Sign in to continue to your dashboard
         </p>
@@ -110,7 +108,7 @@ export default function SignIn() {
         </button>
       </div>
 
-      {/* ⛅ Animated Glow CSS */}
+      {/* 🔮 Glow Animation */}
       <style jsx>{`
         @keyframes textGlow {
           0%, 100% {
@@ -122,6 +120,9 @@ export default function SignIn() {
         }
         .animate-textGlow {
           animation: textGlow 3s ease-in-out infinite;
+        }
+        .font-poppins {
+          font-family: 'Poppins', 'Segoe UI', 'Orbitron', sans-serif;
         }
       `}</style>
     </div>
