@@ -68,7 +68,7 @@ export default function SignIn() {
       {/* 🧊 Glassmorphic Sign In Card */}
       <div className="z-10 w-full max-w-md rounded-2xl bg-white/5 backdrop-blur-xl px-8 py-10 border border-white/20 shadow-xl">
         <h1 className="text-3xl font-extrabold text-center tracking-tight bg-gradient-to-r from-sky-300 via-purple-300 to-pink-300 text-transparent bg-clip-text font-poppins">
-          Webber AI
+          SignIn Kro Motee Ram
         </h1>
         <p className="text-sm text-white/60 text-center mt-1 mb-6">Sign in to your cosmic journey 🚀</p>
 
