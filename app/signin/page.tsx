@@ -38,35 +38,51 @@ export default function SignIn() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-[#1f1c2c] to-[#928DAB] flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-gradient-to-br from-[#0f2027] via-[#203a43] to-[#2c5364] text-white flex items-center justify-center relative overflow-hidden px-4">
 
-      {/* 🌟 Webber AI Branding */}
-      <h1 className="absolute top-6 left-6 z-50 text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text drop-shadow-lg animate-textGlow font-poppins">
-        Webber <span className="text-white/90">AI</span>
-      </h1>
+      {/* ✨ Star Field Background */}
+      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        {Array.from({ length: 200 }).map((_, i) => {
+          const size = Math.random() * 1.2 + 0.4;
+          const top = `${Math.random() * 100}%`;
+          const left = `${Math.random() * 100}%`;
+          const duration = 30 + Math.random() * 20;
+          const delay = Math.random() * 10;
+          return (
+            <div
+              key={i}
+              className="absolute rounded-full bg-white/30 animate-star"
+              style={{
+                width: `${size}px`,
+                height: `${size}px`,
+                top,
+                left,
+                animationDuration: `${duration}s`,
+                animationDelay: `${delay}s`,
+              }}
+            />
+          );
+        })}
+      </div>
 
-      {/* 🧊 Sign In Box */}
-      <div className="bg-white/10 backdrop-blur-md p-10 rounded-2xl shadow-2xl max-w-md w-full border border-white/20 z-10">
-        <h2 className="text-3xl font-extrabold bg-gradient-to-r from-pink-500 to-yellow-500 bg-clip-text text-transparent text-center animate-pulse">
-          Sign In 🙏
-        </h2>
-        <p className="text-sm text-gray-200 text-center mt-2 mb-6">
-          Sign in to continue to your dashboard
-        </p>
+      {/* 🧊 Glassmorphic Sign In Card */}
+      <div className="z-10 w-full max-w-md rounded-2xl bg-white/5 backdrop-blur-xl px-8 py-10 border border-white/20 shadow-xl">
+        <h1 className="text-3xl font-extrabold text-center tracking-tight bg-gradient-to-r from-sky-300 via-purple-300 to-pink-300 text-transparent bg-clip-text font-poppins">
+          Webber AI
+        </h1>
+        <p className="text-sm text-white/60 text-center mt-1 mb-6">Sign in to your cosmic journey 🚀</p>
 
         {error && (
-          <p className="text-red-500 text-sm bg-white/20 p-2 rounded text-center mb-4">
-            {error}
-          </p>
+          <p className="text-red-400 bg-white/10 p-2 text-sm rounded mb-4 text-center">{error}</p>
         )}
 
         <form onSubmit={handleEmailSignIn} className="space-y-5">
           <div>
-            <label className="text-sm text-gray-100">Email</label>
+            <label className="text-sm">Email</label>
             <input
               type="email"
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500"
               placeholder="you@example.com"
+              className="w-full mt-1 px-4 py-2 rounded-lg bg-white/10 placeholder-white/40 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -74,11 +90,11 @@ export default function SignIn() {
           </div>
 
           <div>
-            <label className="text-sm text-gray-100">Password</label>
+            <label className="text-sm">Password</label>
             <input
               type="password"
-              className="mt-1 w-full px-4 py-2 rounded-xl bg-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500"
               placeholder="••••••••"
+              className="w-full mt-1 px-4 py-2 rounded-lg bg-white/10 placeholder-white/40 text-white focus:outline-none focus:ring-2 focus:ring-purple-400"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -87,42 +103,42 @@ export default function SignIn() {
 
           <button
             type="submit"
-            className="w-full bg-gradient-to-r from-pink-500 to-yellow-500 text-white py-2 rounded-xl font-semibold shadow-lg hover:scale-105 transform transition duration-200"
+            className="w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-cyan-400 to-purple-500 hover:scale-105 transition transform shadow-lg"
           >
             Sign In
           </button>
         </form>
 
         <div className="flex items-center gap-2 my-6">
-          <div className="h-px flex-1 bg-white/30" />
-          <p className="text-sm text-white/70">OR</p>
-          <div className="h-px flex-1 bg-white/30" />
+          <div className="h-px flex-1 bg-white/20" />
+          <p className="text-sm text-white/50">or</p>
+          <div className="h-px flex-1 bg-white/20" />
         </div>
 
         <button
           onClick={handleGoogleSignIn}
-          className="w-full bg-white text-black flex items-center justify-center gap-3 py-2 rounded-xl shadow-md hover:shadow-lg transition"
+          className="w-full bg-white text-black flex items-center justify-center gap-3 py-2 rounded-lg shadow-md hover:shadow-lg transition"
         >
           <FcGoogle className="text-xl" />
           <span className="font-medium">Sign in with Google</span>
         </button>
       </div>
 
-      {/* 🔮 Glow Animation */}
+      {/* 🌟 Animations */}
       <style jsx>{`
-        @keyframes textGlow {
-          0%, 100% {
-            text-shadow: 0 0 10px rgba(0,255,255,0.2), 0 0 20px rgba(100,255,255,0.2);
-          }
-          50% {
-            text-shadow: 0 0 20px rgba(0,255,255,0.6), 0 0 40px rgba(100,255,255,0.5);
-          }
+        @keyframes blink {
+          0%, 100% { opacity: 0.2; }
+          50% { opacity: 0.9; }
         }
-        .animate-textGlow {
-          animation: textGlow 3s ease-in-out infinite;
+        @keyframes drift {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(100vw); }
+        }
+        .animate-star {
+          animation: blink 3s ease-in-out infinite, drift linear infinite;
         }
         .font-poppins {
-          font-family: 'Poppins', 'Segoe UI', 'Orbitron', sans-serif;
+          font-family: 'Poppins', 'Segoe UI', sans-serif;
         }
       `}</style>
     </div>
