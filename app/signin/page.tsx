@@ -1,5 +1,7 @@
 'use client';
+
 import { useState } from "react";
+import { useRouter } from "next/navigation"; // ✅ import router
 import { auth } from "@/lib/firebase";
 import {
   signInWithEmailAndPassword,
@@ -9,6 +11,7 @@ import {
 import { FcGoogle } from "react-icons/fc";
 
 export default function SignIn() {
+  const router = useRouter(); // ✅ initialize router
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -18,7 +21,7 @@ export default function SignIn() {
     setError("");
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      alert("Signed in!");
+      router.push("/Searchbar"); // ✅ redirect after successful email sign in
     } catch (err: any) {
       setError(err.message);
     }
@@ -28,7 +31,7 @@ export default function SignIn() {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
-      alert("Signed in with Google!");
+      router.push("/Searchbar"); // ✅ redirect after Google sign in
     } catch (err: any) {
       setError(err.message);
     }
