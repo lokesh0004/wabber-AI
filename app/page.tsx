@@ -97,7 +97,7 @@ export default function LandingPage() {
       >
         <FaRobot className="text-4xl text-cyan-300 animate-pulse" />
         <h1 className="mt-4 text-4xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-400 text-transparent bg-clip-text">
-         Motee AI ❤
+         Webber AI ❤
         </h1>
         <p className="mt-4 text-lg text-gray-200 text-center max-w-lg">
           {lang === 'en'
