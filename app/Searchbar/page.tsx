@@ -112,7 +112,7 @@ const SearchBar = () => {
       <h1 className={`fixed top-6 left-6 z-50 text-[1.3rem] sm:text-2xl font-semibold tracking-tight
         bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text
         drop-shadow-[0_1px_4px_rgba(0,255,255,0.15)]`}>
-        Webber AI ❤
+        Webber AI 
       </h1>
 
       {/* Dark Mode Background */}
